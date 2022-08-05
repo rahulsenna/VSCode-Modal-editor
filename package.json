@@ -1,0 +1,488 @@
+{
+	"name": "rahulvscodeplugin",
+	"displayName": "RahulVSCodePlugin",
+	"description": "Modal Plugin",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"main": "./out/extension.js",
+	"contributes": {
+		"keybindings": [
+			{
+				"key": "f15",
+				"command": "rahulvscodeplugin.insert",
+				"when": "editorTextFocus"
+			},
+			{
+				"key": ";",
+				"command": "rahulvscodeplugin.normal",
+				"when": "editorTextFocus && modal.insert"
+			},
+			{
+				"key": ";",
+				"command": "rahulvscodeplugin.semicolon",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "ctrl+;",
+				"command": "editor.action.insertSnippet",
+				"args": {
+					"snippet": ";"
+				}
+			},
+			{
+				"key": "ctrl+/",
+				"command": "rahulvscodeplugin.commentAandMoveDown",
+				"when": "editorTextFocus && !editorHasSelection"
+			},
+			{
+				"key": "s",
+				"command": "rahulvscodeplugin.subword",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "d",
+				"command": "rahulvscodeplugin.word",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "f",
+				"command": "rahulvscodeplugin.delete",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "g",
+				"command": "rahulvscodeplugin.visual",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "f16",
+				"command": "rahulvscodeplugin.subwordOFF",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "f17",
+				"command": "rahulvscodeplugin.wordOFF",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "f18",
+				"command": "rahulvscodeplugin.deleteOFF",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "escape",
+				"command": "rahulvscodeplugin.visualOFF",
+				"when": "editorTextFocus && modal.normal && modal.visual"
+			},
+			{
+				"key": "p",
+				"command": "workbench.action.focusLastEditorGroup",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "p",
+				"command": "workbench.action.focusPreviousGroup",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "y",
+				"command": "rahulvscodeplugin.headerSourcePrevGroup",
+				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
+			},
+			{
+				"key": "y",
+				"command": "rahulvscodeplugin.headerSourceNextGroup",
+				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
+			},
+			{
+				"key": "t",
+				"command": "editor.action.formatSelection",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "r",
+				"command": "editor.action.refactor",
+				"when": "editorTextFocus && modal.normal && editorHasSelection"
+			},
+			{
+				"key": "r",
+				"command": "editor.action.rename",
+				"when": "editorTextFocus && modal.normal && !editorHasSelection"
+			},
+			{
+				"key": "e",
+				"command": "editor.action.moveSelectionToNextFindMatch",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "w",
+				"command": "editor.action.addSelectionToNextFindMatch",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "q",
+				"command": "workbench.action.nextEditorInGroup",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "a q",
+				"command": "workbench.action.previousEditorInGroup",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "a m",
+				"command": "workbench.action.moveEditorToPreviousGroup",
+				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
+			},
+			{
+				"key": "a m",
+				"command": "workbench.action.moveEditorToNextGroup",
+				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
+			},
+			{
+				"key": "a o",
+				"command": "rahulvscodeplugin.openFileInPrevGroup",
+				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
+			},
+			{
+				"key": "a o",
+				"command": "rahulvscodeplugin.openFileInNextGroup",
+				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
+			},
+			{
+				"key": "a c",
+				"command": "workbench.action.closeActiveEditor",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "h",
+				"command": "cursorUndo",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "z",
+				"command": "",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "x",
+				"command": "rahulvscodeplugin.cut",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "c",
+				"command": "rahulvscodeplugin.copy",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "v",
+				"command": "rahulvscodeplugin.paste",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "b",
+				"command": "editor.action.revealDefinition",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "n",
+				"command": "workbench.action.navigateForward",
+				"when": "editorTextFocus && modal.normal"
+			},
+			{
+				"key": "m",
+				"command": "workbench.action.navigateBack",
+				"when": "editorTextFocus && modal.normal && canNavigateBack"
+			},
+			{
+				"key": "m",
+				"command": "workbench.action.navigateToLastEditLocation",
+				"when": "editorTextFocus && modal.normal && !canNavigateBack && canNavigateToLastEditLocation"
+			},
+			{
+				"key": "i",
+				"command": "cursorUp",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorDown",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorLeft",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorRight",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "u",
+				"command": "cursorHome",
+				"when": "editorTextFocus && modal.normal && !modal.visual"
+			},
+			{
+				"key": "o",
+				"command": "cursorEnd",
+				"when": "editorTextFocus && modal.normal && !modal.visual"
+			},
+			{
+				"key": "i",
+				"command": "cursorMove",
+				"args": {
+					"to": "prevBlankLine"
+				},
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorMove",
+				"args": {
+					"to": "nextBlankLine"
+				},
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorWordLeft",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorWordEndRight",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorWordPartLeft",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorWordPartRight",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "deleteLeft",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete"
+			},
+			{
+				"key": "l",
+				"command": "deleteRight",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete"
+			},
+			{
+				"key": "u",
+				"command": "deleteAllLeft",
+				"when": "editorTextFocus && modal.normal && modal.delete"
+			},
+			{
+				"key": "o",
+				"command": "deleteAllRight",
+				"when": "editorTextFocus && modal.normal && modal.delete"
+			},
+			{
+				"key": "j",
+				"command": "deleteWordLeft",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && modal.delete"
+			},
+			{
+				"key": "l",
+				"command": "deleteWordEndRight",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && modal.delete"
+			},
+			{
+				"key": "j",
+				"command": "deleteWordPartLeft",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && modal.delete"
+			},
+			{
+				"key": "l",
+				"command": "deleteWordPartRight",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && modal.delete"
+			},
+			{
+				"key": "i",
+				"command": "cursorUpSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorDownSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorLeftSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorRightSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "u",
+				"command": "cursorHomeSelect",
+				"when": "editorTextFocus && modal.normal && modal.visual"
+			},
+			{
+				"key": "o",
+				"command": "cursorEndSelect",
+				"when": "editorTextFocus && modal.normal && modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorWordLeftSelect",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorWordEndRightSelect",
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "j",
+				"command": "cursorWordPartLeftSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "l",
+				"command": "cursorWordPartRightSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "i",
+				"command": "cursorPageUp",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorPageDown",
+				"args": {
+					"to": "nextBlankLine"
+				},
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && !modal.visual"
+			},
+			{
+				"key": "i",
+				"command": "cursorPageUp",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete && !modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorPageDown",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete && !modal.visual"
+			},
+			{
+				"key": "i",
+				"command": "cursorPageUpSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorPageDownSelect",
+				"args": {
+					"to": "nextBlankLine"
+				},
+				"when": "editorTextFocus && modal.normal && !modal.word && modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "i",
+				"command": "cursorPageUpSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete && modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorPageDownSelect",
+				"when": "editorTextFocus && modal.normal && !modal.word && !modal.subword && modal.delete && modal.visual"
+			}
+		],
+		"commands": [
+			{
+				"command": "rahulvscodeplugin.semicolon",
+				"title": "Rahul Semicolon"
+			},
+			{
+				"command": "rahulvscodeplugin.normal",
+				"title": "Rahul Normal"
+			},
+			{
+				"command": "rahulvscodeplugin.insert",
+				"title": "Rahul Insert"
+			},
+			{
+				"command": "rahulvscodeplugin.word",
+				"title": "Rahul Word"
+			},
+			{
+				"command": "rahulvscodeplugin.wordOFF",
+				"title": "Rahul WordOFF"
+			},
+			{
+				"command": "rahulvscodeplugin.subword",
+				"title": "Rahul sub_word"
+			},
+			{
+				"command": "rahulvscodeplugin.subwordOFF",
+				"title": "Rahul sub_wordOFF"
+			},
+			{
+				"command": "rahulvscodeplugin.visual",
+				"title": "Rahul visual"
+			},
+			{
+				"command": "rahulvscodeplugin.visualOFF",
+				"title": "Rahul visualOFF"
+			},
+			{
+				"command": "rahulvscodeplugin.delete",
+				"title": "Rahul delete"
+			},
+			{
+				"command": "rahulvscodeplugin.deleteOFF",
+				"title": "Rahul deleteOFF"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.66.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.16.0",
+		"@typescript-eslint/parser": "^5.16.0",
+		"eslint": "^8.11.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.2.2",
+		"typescript": "^4.5.5",
+		"@vscode/test-electron": "^2.1.3"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^7.0.0"
+	}
+}
