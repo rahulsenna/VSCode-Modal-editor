@@ -46,11 +46,13 @@ function HeaderSource(origPath: string | undefined) {
 
 export function activate(context: vscode.ExtensionContext) {
 	const os = require('node:os');
-
+	const path = require('path');
+	
 	if (os.platform() === 'linux') {
 
 		const cp = require('child_process')
-		cp.exec('~/./vs_key', (err: any, stdout: any, stderr: any) => {
+		const key_up_bin = path.join(__dirname, 'key_up_x11');
+		cp.exec(key_up_bin, (err: any, stdout: any, stderr: any) => {
 			console.log('stdout: ' + stdout);
 			console.log('stderr: ' + stderr);
 			if (err) {
