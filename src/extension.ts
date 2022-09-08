@@ -3,6 +3,9 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs'; // In NodeJS: 'const fs = require('fs')'
 
+const os = require('node:os');
+const path = require('path');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -22,31 +25,30 @@ async function ChangeCursorColor(Color: String): Promise<void> {
 }
 
 function HeaderSource(origPath: string | undefined) {
-	if (origPath != undefined) {
-		let path: string;
+	if (!origPath) { return }
+	let path: string;
 
-		if (origPath.endsWith(".c") || origPath.endsWith(".cpp")) {
-			path = origPath.replace(/\.(c$|cpp$)/, ".h");
-		}
-		else if (origPath.endsWith(".h") || origPath.endsWith(".hpp")) {
-			path = origPath.replace(/\.(h$|hpp$)/, ".cpp");
-			if (!fs.existsSync(path.replace(/^\//, ""))) {
-				path = path.replace(".cpp", ".c");
-			}
+	if (origPath.endsWith('.c') || origPath.endsWith('.cpp'))
+	{
+		path = origPath.replace(/\.(c|cpp)$/, '.h');
+	}
+	else if (origPath.endsWith('.h') || origPath.endsWith('.hpp'))
+	{
+		path = origPath.replace(/\.(h|hpp)$/, '.cpp');
+		if (os.platform() === 'win32') { path = path.replace(/\//, ''); }
+		if (!fs.existsSync(path)) { path = path.replace('.cpp', '.c'); }
 
-		} else {
-			path = "";
-		}
-
-		if (path != undefined) {
-			vscode.commands.executeCommand("vscode.open", vscode.Uri.file(path));
-		}
+	} else
+	{
+		path = '';
+	}
+	if (path != undefined) {
+		vscode.commands.executeCommand("vscode.open", vscode.Uri.file(path));
 	}
 }
 
 export function activate(context: vscode.ExtensionContext) {
-	const os = require('node:os');
-	const path = require('path');
+
 	
 	if (os.platform() === 'linux') {
 
@@ -114,7 +116,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const editor:any = vscode.window.activeTextEditor;
 		if (editor.selection.active.character == 0) {
-			vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "\t" }); return;
+			 //vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "\t" }); return;
+			 vscode.commands.executeCommand("tab"); return;
 		}
 		
 		let oneMinus = new vscode.Position(editor.selection.active.line, editor.selection.active.character - 1);
@@ -124,9 +127,10 @@ export function activate(context: vscode.ExtensionContext) {
 		let hasChar:boolean = charBeforeTab.length > 0 && charBeforeTab.match(/[a-z]/i);
 
 		if (hasChar) {
-			vscode.commands.executeCommand("simpleAutocomplete.next");
+			vscode.commands.executeCommand("hippie-completion.next");
 		} else {
-			vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "\t" });
+			//vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "\t" });
+			vscode.commands.executeCommand("tab");
 		}
 
 	});
@@ -259,6 +263,12 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(deleteOFF);
 	//----------------------------------------------------------------------------------------
 
+	let replace = vscode.commands.registerCommand('rahulvscodeplugin.replace', () => {
+		vscode.commands.executeCommand("editor.action.addSelectionToNextFindMatch").then(() => {
+			vscode.commands.executeCommand("rahulvscodeplugin.insert") });
+	});
+	context.subscriptions.push(replace);
+	//----------------------------------------------------------------------------------------
 
 }
 

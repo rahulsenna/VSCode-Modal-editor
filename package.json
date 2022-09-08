@@ -458,6 +458,10 @@
 			{
 				"command": "rahulvscodeplugin.deleteOFF",
 				"title": "Rahul deleteOFF"
+			},
+			{
+				"command": "rahulvscodeplugin.replace",
+				"title": "Rahul replace"
 			}
 		]
 	},
