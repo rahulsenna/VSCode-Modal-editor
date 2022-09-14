@@ -258,6 +258,24 @@
 				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
 			},
 			{
+				"key": "i",
+				"command": "cursorMove",
+				"args": {
+					"to": "prevBlankLine",
+					"select": true
+				},
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
+				"key": "k",
+				"command": "cursorMove",
+				"args": {
+					"to": "nextBlankLine",
+					"select": true
+				},
+				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && modal.visual"
+			},
+			{
 				"key": "j",
 				"command": "cursorWordLeft",
 				"when": "editorTextFocus && modal.normal && modal.word && !modal.subword && !modal.delete && !modal.visual"
