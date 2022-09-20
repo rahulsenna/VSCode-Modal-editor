@@ -108,7 +108,7 @@
 			},
 			{
 				"key": "t",
-				"command": "editor.action.formatSelection",
+				"command": "rahulvscodeplugin.format_and_expand_line_select",
 				"when": "editorTextFocus && modal.normal"
 			},
 			{

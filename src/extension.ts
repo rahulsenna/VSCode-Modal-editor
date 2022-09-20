@@ -276,7 +276,12 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.executeCommand("rahulvscodeplugin.insert") });
 	});
 	context.subscriptions.push(command_and_insert);
-
+	//--------------------------Format and Expand Line Selection--------------------------------------------
+	let format_and_expand_line_select = vscode.commands.registerCommand('rahulvscodeplugin.format_and_expand_line_select', () => {
+		vscode.commands.executeCommand("editor.action.formatSelection").then(() => {
+			vscode.commands.executeCommand("expandLineSelection") });
+	});
+	context.subscriptions.push(format_and_expand_line_select);
 }
 
 // this method is called when your extension is deactivated
