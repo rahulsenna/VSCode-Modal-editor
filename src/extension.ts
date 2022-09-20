@@ -270,6 +270,13 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(replace);
 	//----------------------------------------------------------------------------------------
 
+	//--------------------------Command and Insert--------------------------------------------
+	let command_and_insert = vscode.commands.registerCommand('rahulvscodeplugin.command_and_insert', (args = {}) => {
+		vscode.commands.executeCommand(args).then(() => {
+			vscode.commands.executeCommand("rahulvscodeplugin.insert") });
+	});
+	context.subscriptions.push(command_and_insert);
+
 }
 
 // this method is called when your extension is deactivated
