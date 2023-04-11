@@ -282,6 +282,47 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.executeCommand("expandLineSelection") });
 	});
 	context.subscriptions.push(format_and_expand_line_select);
+
+	//---------------------------------------------Unwrap---------------------------------------------------
+	const unwrap = () => {
+		vscode.commands.executeCommand("cursorDown").then(() => {
+			vscode.commands.executeCommand("editor.action.selectToBracket").then(() => {
+				vscode.commands.executeCommand("outdent").then(() => {
+					vscode.commands.executeCommand("cancelSelection").then(() => {
+						vscode.commands.executeCommand("cursorUp").then(() => {
+							vscode.commands.executeCommand("bracketeer.removeBrackets");
+						});
+					});
+				});
+			});
+		});
+	};
+	let unwrap_bracket_statements = vscode.commands.registerCommand('rahulvscodeplugin.unwrap', () =>  {
+		const editor = vscode.window.activeTextEditor;
+		if (!editor) { return; }
+
+		let range = new vscode.Range(editor.selection.active.line, 0, editor.selection.active.line+1, 0);
+		let text = editor.document.getText(range);
+		let idx = text.indexOf('{');
+		if (idx > 0)
+		{
+			range = new vscode.Range(editor.selection.active.line, 0, editor.selection.active.line, idx);
+			editor.edit(edit => {
+				edit.delete(range);
+			}).then(() => {
+				unwrap();
+			});
+		} else {
+			vscode.commands.executeCommand("cut").then(() => {
+				unwrap();
+			});
+		}
+
+
+		
+	});
+
+	context.subscriptions.push(unwrap_bracket_statements);
 }
 
 // this method is called when your extension is deactivated
