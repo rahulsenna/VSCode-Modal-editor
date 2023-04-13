@@ -1,6 +1,7 @@
 {
 	"name": "rahulvscodeplugin",
-	"displayName": "RahulVSCodePlugin",
+	"publisher": "rahulsinha",
+	"displayName": "Modal Keyboard (Rahul's)",
 	"description": "Modal Plugin",
 	"version": "0.0.1",
 	"engines": {
@@ -11,6 +12,7 @@
 	],
 	"activationEvents": [
 		"*"
+		
 	],
 	"repository": {
 		"type": "git",

@@ -54,11 +54,21 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const cp = require('child_process')
 		const key_up_bin = path.join(__dirname, 'key_up_x11');
+		const key_down_bin = path.join(__dirname, 'key_down_x11');
+
 		cp.exec(key_up_bin, (err: any, stdout: any, stderr: any) => {
 			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
+			console.error('stderr: ' + stderr);
 			if (err) {
-				console.log('error: ' + err);
+				console.error('error: ' + err);
+			}
+		});
+
+		cp.exec(key_down_bin, (err: any, stdout: any, stderr: any) => {
+			console.log('stdout: ' + stdout);
+			console.error('stderr: ' + stderr);
+			if (err) {
+				console.error('error: ' + err);
 			}
 		});
 	}
