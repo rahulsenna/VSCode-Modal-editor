@@ -50,7 +50,7 @@ function HeaderSource(origPath: string | undefined) {
 export function activate(context: vscode.ExtensionContext) {
 
 	
-	if (os.platform() === 'linux') {
+	/* if (os.platform() === 'linux') {
 
 		const cp = require('child_process')
 		const key_up_bin = path.join(__dirname, 'key_up_x11');
@@ -71,7 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 				console.error('error: ' + err);
 			}
 		});
-	}
+	} */
 
 	vscode.commands.executeCommand("setContext", "modal.normal", true);
 	vscode.commands.executeCommand("setContext", "modal.word", false);
