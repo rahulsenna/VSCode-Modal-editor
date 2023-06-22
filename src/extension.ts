@@ -333,6 +333,17 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(unwrap_bracket_statements);
+
+	//---------------------------------------------Debugger Restart---------------------------------------------------
+	let restart_debugger = vscode.commands.registerCommand('workbench.action.debug.restart', () => {
+		vscode.commands.executeCommand("workbench.action.debug.disconnect").then(() => {
+			// TODO Handle case for when it's Cmake project or __Python project__ and just a __python file__
+			if (vscode.window.activeTextEditor?.document.languageId == 'python')
+				vscode.commands.executeCommand('python.debugInTerminal');
+			else
+				vscode.commands.executeCommand("workbench.action.debug.start") });
+	});
+	context.subscriptions.push(restart_debugger);
 }
 
 // this method is called when your extension is deactivated
