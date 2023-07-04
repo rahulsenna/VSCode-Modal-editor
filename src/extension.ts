@@ -336,7 +336,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	//---------------------------------------------Debugger Restart---------------------------------------------------
 	let restart_debugger = vscode.commands.registerCommand('workbench.action.debug.restart', () => {
-		vscode.commands.executeCommand("workbench.action.debug.disconnect").then(() => {
+		vscode.commands.executeCommand("workbench.action.debug.stop").then(() => {
 			// TODO Handle case for when it's Cmake project or __Python project__ and just a __python file__
 			if (vscode.window.activeTextEditor?.document.languageId == 'python')
 				vscode.commands.executeCommand('python.debugInTerminal');
