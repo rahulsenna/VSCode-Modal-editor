@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs'; // In NodeJS: 'const fs = require('fs')'
 
 const os = require('node:os');
-const path = require('path');
+// const path = require('path');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -262,7 +262,13 @@ export function activate(context: vscode.ExtensionContext) {
 	//----------------------------------------------------------------------------------------
 	let delete_mode = vscode.commands.registerCommand('rahulvscodeplugin.delete', () => {
 		vscode.commands.executeCommand("setContext", "modal.delete", true);
-		vscode.commands.executeCommand("rahulvscodeplugin.visualOFF");
+
+		vscode.commands.executeCommand("setContext", "modal.delete", true).then(() =>
+		{
+			vscode.commands.executeCommand("setContext", "modal.delete", true);
+			console.log('DELETE MODE ON ');
+			vscode.commands.executeCommand("rahulvscodeplugin.visualOFF");	
+		})
 
 	});
 	context.subscriptions.push(delete_mode);

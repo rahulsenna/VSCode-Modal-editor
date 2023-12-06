@@ -29,12 +29,12 @@
 			{
 				"key": ";",
 				"command": "rahulvscodeplugin.normal",
-				"when": "editorTextFocus && modal.insert"
+				"when": "editorTextFocus && modal.insert && !modal.search"
 			},
 			{
 				"key": ";",
 				"command": "rahulvscodeplugin.semicolon",
-				"when": "editorTextFocus && modal.normal"
+				"when": "editorTextFocus && modal.normal && !modal.search"
 			},
 			{
 				"key": "ctrl+;",
