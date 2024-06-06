@@ -354,6 +354,29 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerTextEditorCommand('rahulvscodeplugin.swapCursorPosInSelection', editor => {
 		editor.selections = editor.selections.map( s => new vscode.Selection(s.active, s.anchor));
 	  }) );
+
+	  let dotORarrow = vscode.commands.registerCommand('rahulvscodeplugin.dotORarrow', () =>  {
+		const editor = vscode.window.activeTextEditor;
+		if (!editor) { return; }
+
+		const position = editor.selection.active;
+		if (position.character > 0) {
+			// Get the position of the character before the cursor
+			const newPosition = position.with(position.line, position.character - 1);
+			const range = new vscode.Range(newPosition, position);
+			const text = editor.document.getText(range);
+			if (text == ".")
+			{
+				vscode.commands.executeCommand("deleteLeft");
+				vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "->" });
+			}
+			 else
+				vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "." });
+		}else 
+			vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "." });
+	});
+	context.subscriptions.push(dotORarrow);
+
 }
 
 // this method is called when your extension is deactivated
