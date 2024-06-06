@@ -350,6 +350,10 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.commands.executeCommand("workbench.action.debug.start") });
 	});
 	context.subscriptions.push(restart_debugger);
+
+	context.subscriptions.push(vscode.commands.registerTextEditorCommand('rahulvscodeplugin.swapCursorPosInSelection', editor => {
+		editor.selections = editor.selections.map( s => new vscode.Selection(s.active, s.anchor));
+	  }) );
 }
 
 // this method is called when your extension is deactivated
