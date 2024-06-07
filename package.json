@@ -166,7 +166,7 @@
 			{
 				"key": "a c",
 				"command": "workbench.action.closeActiveEditor",
-				"when": "editorTextFocus && modal.normal"
+				"when": "modal.normal"
 			},
 			{
 				"key": "h",
