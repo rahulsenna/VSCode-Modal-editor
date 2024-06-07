@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.executeCommand("setContext", "modal.visual", false);
 	vscode.commands.executeCommand("setContext", "modal.delete", false);
 
-
+	let NORMAL_MODE = true;
 
 
 	// The command has been defined in the package.json file
@@ -206,6 +206,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.executeCommand("setContext", "modal.normal", true);
 		vscode.commands.executeCommand("setContext", "modal.insert", false);
 		editor.options.cursorStyle = vscode.TextEditorCursorStyle.Block;
+		NORMAL_MODE = true;
 	});
 	context.subscriptions.push(normal);
 
@@ -219,6 +220,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.executeCommand("setContext", "modal.delete", false);
 
 		editor.options.cursorStyle = vscode.TextEditorCursorStyle.Line;
+		NORMAL_MODE = false;
 	});
 	context.subscriptions.push(insert);
 
@@ -376,6 +378,18 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.executeCommand("editor.action.insertSnippet", { "snippet": "." });
 	});
 	context.subscriptions.push(dotORarrow);
+
+	context.subscriptions.push(
+		vscode.window.onDidChangeActiveTextEditor((editor) => {
+        if (editor) {
+			if (editor)
+				if (NORMAL_MODE)
+					editor.options.cursorStyle = vscode.TextEditorCursorStyle.Block;
+				else
+					editor.options.cursorStyle = vscode.TextEditorCursorStyle.Line;
+        }
+    })
+);
 
 }
 
