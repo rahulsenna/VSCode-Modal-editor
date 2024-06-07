@@ -23,13 +23,12 @@
 		"keybindings": [
 			{
 				"key": "f15",
-				"command": "rahulvscodeplugin.insert",
-				"when": "editorTextFocus"
+				"command": "rahulvscodeplugin.insert"
 			},
 			{
 				"key": ";",
 				"command": "rahulvscodeplugin.normal",
-				"when": "editorTextFocus && modal.insert && !modal.search"
+				"when": "modal.insert && !modal.search"
 			},
 			{
 				"key": ";",
