@@ -87,26 +87,7 @@
 				"command": "rahulvscodeplugin.visualOFF",
 				"when": "editorTextFocus && modal.normal && modal.visual"
 			},
-			{
-				"key": "p",
-				"command": "workbench.action.focusLastEditorGroup",
-				"when": "editorTextFocus && modal.normal"
-			},
-			{
-				"key": "p",
-				"command": "workbench.action.focusPreviousGroup",
-				"when": "editorTextFocus && modal.normal"
-			},
-			{
-				"key": "y",
-				"command": "rahulvscodeplugin.headerSourcePrevGroup",
-				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
-			},
-			{
-				"key": "y",
-				"command": "rahulvscodeplugin.headerSourceNextGroup",
-				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
-			},
+	
 			{
 				"key": "t",
 				"command": "rahulvscodeplugin.format_and_expand_line_select",
@@ -132,49 +113,10 @@
 				"command": "editor.action.addSelectionToNextFindMatch",
 				"when": "editorTextFocus && modal.normal"
 			},
-			{
-				"key": "q",
-				"command": "workbench.action.nextEditorInGroup",
-				"when": "editorTextFocus && modal.normal"
-			},
-			{
-				"key": "a q",
-				"command": "workbench.action.previousEditorInGroup",
-				"when": "editorTextFocus && modal.normal"
-			},
-			{
-				"key": "a m",
-				"command": "workbench.action.moveEditorToPreviousGroup",
-				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
-			},
-			{
-				"key": "a m",
-				"command": "workbench.action.moveEditorToNextGroup",
-				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
-			},
-			{
-				"key": "a o",
-				"command": "rahulvscodeplugin.openFileInPrevGroup",
-				"when": "editorTextFocus && modal.normal && activeEditorGroupLast"
-			},
-			{
-				"key": "a o",
-				"command": "rahulvscodeplugin.openFileInNextGroup",
-				"when": "editorTextFocus && modal.normal && !activeEditorGroupLast"
-			},
-			{
-				"key": "a c",
-				"command": "workbench.action.closeActiveEditor",
-				"when": "modal.normal"
-			},
+
 			{
 				"key": "h",
 				"command": "cursorUndo",
-				"when": "editorTextFocus && modal.normal"
-			},
-			{
-				"key": "z",
-				"command": "",
 				"when": "editorTextFocus && modal.normal"
 			},
 			{
