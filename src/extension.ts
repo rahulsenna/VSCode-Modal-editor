@@ -393,11 +393,30 @@ export function activate(context: vscode.ExtensionContext) {
 	let currentFile: vscode.TextDocument | null = null;
 
 	context.subscriptions.push(
-	vscode.commands.registerCommand('rahulvscodeplugin.switchBetweenTwoFiles', () => {
+	vscode.commands.registerCommand('rahulvscodeplugin.switchBetweenTwoFiles', async () => {
 		if (previousFile) {
 			const current = vscode.window.activeTextEditor?.document;
+			if (!current)
+			{
+				vscode.commands.executeCommand("workbench.action.focusPreviousGroup");
+				return;
+			}
 			if (current && previousFile) {
-				vscode.window.showTextDocument(previousFile);
+				const previousFileUri = previousFile.uri;
+				const visibleEditors = vscode.window.visibleTextEditors;
+
+				// Check if the previous file is already open in a different group
+				let targetEditor = visibleEditors.find(editor => editor.document.uri.fsPath === previousFileUri.fsPath);
+
+				if (targetEditor) {
+					// Switch to the group where the target file is already open
+					await vscode.window.showTextDocument(targetEditor.document, { viewColumn: targetEditor.viewColumn });
+				} else {
+					// Open the file in the current group if it's not already open
+					await vscode.window.showTextDocument(previousFile);
+				}
+
+				// Update the previous file reference
 				previousFile = current;
 			}
 		}
