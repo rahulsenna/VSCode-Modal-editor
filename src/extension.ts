@@ -381,15 +381,36 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.window.onDidChangeActiveTextEditor((editor) => {
-        if (editor) {
-			if (editor)
-				if (NORMAL_MODE)
-					editor.options.cursorStyle = vscode.TextEditorCursorStyle.Block;
-				else
-					editor.options.cursorStyle = vscode.TextEditorCursorStyle.Line;
-        }
+			if (!editor) { return; }
+			if (NORMAL_MODE)
+				editor.options.cursorStyle = vscode.TextEditorCursorStyle.Block;
+			else
+				editor.options.cursorStyle = vscode.TextEditorCursorStyle.Line;
     })
 );
+
+	let previousFile: vscode.TextDocument | null = null;
+	let currentFile: vscode.TextDocument | null = null;
+
+	context.subscriptions.push(
+	vscode.commands.registerCommand('rahulvscodeplugin.switchBetweenTwoFiles', () => {
+		if (previousFile) {
+			const current = vscode.window.activeTextEditor?.document;
+			if (current && previousFile) {
+				vscode.window.showTextDocument(previousFile);
+				previousFile = current;
+			}
+		}
+	}));
+
+	vscode.window.onDidChangeActiveTextEditor(editor => {
+	if (editor) {
+		if (currentFile) {
+			previousFile = currentFile;
+		}
+		currentFile = editor.document;
+	}
+	});
 
 }
 
