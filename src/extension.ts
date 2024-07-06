@@ -134,7 +134,7 @@ export function activate(context: vscode.ExtensionContext) {
 		let range = new vscode.Range(oneMinus, editor.selection.active);
 
 		let charBeforeTab = editor.document.getText(range).trim();
-		let hasChar:boolean = charBeforeTab.length > 0 && charBeforeTab.match(/[a-z]/i);
+		let hasChar:boolean = charBeforeTab.length > 0 && charBeforeTab.match(/\w+/);
 
 		if (hasChar) {
 			vscode.commands.executeCommand("hippie-completion.next");
