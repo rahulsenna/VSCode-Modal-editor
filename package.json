@@ -1,9 +1,9 @@
 {
-	"name": "rahulvscodeplugin",
+	"name": "modalkeys",
 	"publisher": "rahulsinha",
-	"displayName": "Modal Keyboard (Rahul's)",
+	"displayName": "Modal Keyboard (Personal)",
 	"description": "Modal Plugin",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.66.0"
 	},
@@ -21,10 +21,7 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"keybindings": [
-			{
-				"key": "f15",
-				"command": "rahulvscodeplugin.insert"
-			},
+			
 			{
 				"key": ";",
 				"command": "rahulvscodeplugin.normal",
