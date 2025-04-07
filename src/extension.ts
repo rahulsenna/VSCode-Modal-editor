@@ -226,6 +226,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	//----------------------------------------------------------------------------------------
+	let space_fn = vscode.commands.registerCommand('rahulvscodeplugin.space_fn', () => {
+		vscode.commands.executeCommand("setContext", "space_fn", true);
+	});
+	context.subscriptions.push(space_fn);
+
+	let space_fn_off = vscode.commands.registerCommand('rahulvscodeplugin.space_fn_off', () => {
+		vscode.commands.executeCommand("setContext", "space_fn", false);
+	});
+	context.subscriptions.push(space_fn_off);
+
+	//----------------------------------------------------------------------------------------
 	let word = vscode.commands.registerCommand('rahulvscodeplugin.word', () => {
 		vscode.commands.executeCommand("setContext", "modal.word", true);
 	});
