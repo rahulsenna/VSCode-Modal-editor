@@ -3,7 +3,7 @@
 	"publisher": "rahulsinha",
 	"displayName": "Modal Keyboard (Personal)",
 	"description": "Modal Plugin",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"engines": {
 		"vscode": "^1.66.0"
 	},
@@ -373,6 +373,15 @@
 			}
 		],
 		"commands": [
+			{
+				"command": "rahulvscodeplugin.space_fn",
+				"title": "Rahul space fn"
+			},
+			{
+				"command": "rahulvscodeplugin.space_fn_off",
+				"title": "Rahul space fn off"
+			},
+
 			{
 				"command": "rahulvscodeplugin.semicolon",
 				"title": "Rahul Semicolon"
