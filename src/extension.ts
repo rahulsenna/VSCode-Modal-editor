@@ -78,6 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.executeCommand("setContext", "modal.subword", false);
 	vscode.commands.executeCommand("setContext", "modal.visual", false);
 	vscode.commands.executeCommand("setContext", "modal.delete", false);
+	vscode.commands.executeCommand("setContext", "space_fn", false);
 
 	let NORMAL_MODE = true;
 
@@ -205,6 +206,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// Display a message box to the user
 		vscode.commands.executeCommand("setContext", "modal.normal", true);
 		vscode.commands.executeCommand("setContext", "modal.insert", false);
+		vscode.commands.executeCommand("setContext", "space_fn", false);
 		editor.options.cursorStyle = vscode.TextEditorCursorStyle.Block;
 		NORMAL_MODE = true;
 	});
@@ -218,6 +220,7 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.executeCommand("setContext", "modal.subword", false);
 		vscode.commands.executeCommand("setContext", "modal.visual", false);
 		vscode.commands.executeCommand("setContext", "modal.delete", false);
+		vscode.commands.executeCommand("setContext", "space_fn", false);
 
 		editor.options.cursorStyle = vscode.TextEditorCursorStyle.Line;
 		NORMAL_MODE = false;
